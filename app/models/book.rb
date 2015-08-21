@@ -6,7 +6,7 @@ class Book
 	field :name, type: String
 	field :isbn, type: String
 
-	has_and_belongs_to_many: :authors
+	has_and_belongs_to_many :authors
 
 	def to_s
 		"#@name - #@isbn"

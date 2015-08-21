@@ -37,6 +37,7 @@ gem 'grape-swagger'
 
 gem 'grape-swagger-ui'
 gem 'mongoid'
+gem 'mongo'
 
 
 group :development, :test do

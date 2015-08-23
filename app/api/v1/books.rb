@@ -14,21 +14,16 @@ module V1
 
 			desc 'Create new book instance'
 			params do 
-				requires :isbn, type: String
-				requires :location, type: Hash do 
-					requires :lat, type: BigDecimal
-					requires :lon, type: BigDecimal
+				requires :isbn, type: String, documentation: { example: 'ISBN of the book' }
+				requires :location, type: Hash, documentation: { example: 'Location object with lat and lon' } do 
+					requires :lat, type: BigDecimal, documentation: { example: 'Current Latitude of the book' }
+					requires :lon, type: BigDecimal, documentation: { example: 'Current Longitude of the book' }
 				end
 			end
 			post '/' do 
-				
-				book = Book.find_or_create_by(isbn: params[:isbn])
-				user = User.find_or_create_by(uid: 'ashkan')
-				locatino_arr = [params[:location][:lat].to_f, params[:location][:lon].to_f]
-				
-				BookInstance.create(location: locatino_arr, 
-									book: book,
-									user: user)
+				BookInstance.create(location: [params[:location][:lat].to_f, params[:location][:lon].to_f], 
+									book: Book.find_or_create_by(isbn: params[:isbn]),
+									user: User.find_or_create_by(uid: 'ashkan'))
 			end
 		end
 	end

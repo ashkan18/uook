@@ -5,6 +5,8 @@ module V1
 	    prefix "api"
 	    version "v1", using: :header, vendor: 'Ashkan'
 	    format :json
+	    content_type :json, 'application/json'
+	    rescue_from :all
 
 		  helpers do
 		    def logger

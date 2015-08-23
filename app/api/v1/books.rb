@@ -2,9 +2,23 @@ module V1
 	class Books < Grape::API
 		include V1::Defaults
 		resources :books do
-			desc 'Get all books'
+			desc 'Search all books'
+			params do 
+				optional :name, type: String
+				optional :isbn, type: String
+				optional :lat, type: BigDecimal
+				optional :lon, type: BigDecimal
+				all_or_none_of :lon, :lat
+			end
 			get '' do
-				Book.all
+				query = BookInstance.all
+				query = query.where("book.isbn" => params[:isbn]) if params.has_key?(:isbn)
+				query = query.where("book.name" => params[:name]) if params.has_key?(:name)
+				if params.has_key?(:lat) and params.has_key?(:lon)
+					center = [params[:lat].to_f, params[:lon].to_f]
+					query = query.geo_near(center).max_distance(10)
+				end
+				present query
 			end
 
 			desc 'Get Specific book'

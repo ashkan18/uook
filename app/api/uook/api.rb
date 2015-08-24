@@ -5,7 +5,9 @@ module Uook
       header['Access-Control-Request-Method'] = '*'
 		end
 		
-		mount API::V1::Books
+		mount V1::Books
+		mount V1::BookInstances
+		mount V1::Users
 
 		add_swagger_documentation :format => :json,
                             :mount_path => "/api/swagger_doc",

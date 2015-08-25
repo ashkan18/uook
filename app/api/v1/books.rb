@@ -9,7 +9,7 @@ module V1
 			end
 			get '' do
 				query = Book.all
-				query = query.where(isbn: params[:isbn]) if params.has_key?(:isbn)
+				return query.find_by(isbn: params[:isbn]) if params.has_key?(:isbn)
 				query = query.where(isbn: params[:name]) if params.has_key?(:name)
 				present query
 			end
@@ -17,6 +17,15 @@ module V1
 			desc 'Get Specific book'
 			get ':id' do
 				Book.find_by(uid: params[:id])
+			end
+
+			desc 'Create a new Book'
+			params do
+				requires :isbn, type: String
+				requires :name, type: String
+			end
+			post '' do
+				Book.find_or_create_by(isbn: params[:isbn], name: params[:name])
 			end
 		end
 	end

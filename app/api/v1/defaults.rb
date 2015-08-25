@@ -6,7 +6,9 @@ module V1
 	    version "v1", using: :header, vendor: 'Ashkan'
 	    format :json
 	    content_type :json, 'application/json'
-	    rescue_from :all
+	    rescue_from Mongoid::Errors::DocumentNotFound do |e|
+        error!(e.message, 404)
+      end
 
 		  helpers do
 		    def logger

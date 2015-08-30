@@ -6,6 +6,8 @@ class User
 	field :uid, type: String
 	field :name, type: String
 	field :user_type, type: Integer
+	field :user_name, type: String
+	field :password, type: String
 
 	has_many :books
 

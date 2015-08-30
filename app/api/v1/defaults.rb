@@ -1,3 +1,5 @@
+require 'doorkeeper/grape/helpers'
+
 module V1
 	module Defaults
   	extend ActiveSupport::Concern
@@ -10,11 +12,13 @@ module V1
         error!(e.message, 404)
       end
 
-		  helpers do
-		    def logger
-		      Rails.logger
-		    end
-		  end
+		  helpers Doorkeeper::Grape::Helpers
+
+	      before do
+	        doorkeeper_authorize!
+	      end
+
+ 			 end
 		end
-  end
+
 end

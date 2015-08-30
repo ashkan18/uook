@@ -1,3 +1,5 @@
+require 'doorkeeper/grape/helpers'
+
 module V1
 	class Books < Grape::API
 		include V1::Defaults

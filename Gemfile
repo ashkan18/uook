@@ -39,6 +39,7 @@ gem 'grape-swagger-ui'
 gem 'mongoid'
 gem 'mongo'
 
+gem 'doorkeeper-mongodb', :git => 'git://github.com/doorkeeper-gem/doorkeeper-mongodb.git'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

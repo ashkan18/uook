@@ -1,3 +1,4 @@
+require 'doorkeeper/grape/helpers'
 class Book
 	include Mongoid::Document
 	include Mongoid::Timestamps

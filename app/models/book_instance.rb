@@ -1,5 +1,6 @@
 class BookInstance
 	include Mongoid::Document
+	include Mongoid::Timestamps
 
 	field :uid, type: String
 	field :location, type:Array  # [lat,lng]

@@ -14,6 +14,21 @@ module V1
 		    def logger
 		      Rails.logger
 		    end
+		    def authenticate!
+      		error!('Unauthorized. Invalid or expired token.', 401) unless current_user
+    		end
+
+		    def current_user
+		      # find token. Check if valid.
+		      error!('Missing auth token') unless headers.has_key?('X-Authtoken')
+		      token = APIKey.find_by(access_token: headers['X-Authtoken'])
+		      if token
+		        @current_user = User.find(token.user_id)
+		      else
+		        false
+		      end
+		    end
+
 		  end
 		end
   end

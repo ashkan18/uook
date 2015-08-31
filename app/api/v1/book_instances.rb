@@ -1,6 +1,9 @@
 module V1
 	class BookInstances < Grape::API
 		include V1::Defaults
+		before do
+			authenticate!
+		end
 		resources :book_instances do
 			desc 'Search book instances'
 			params do 

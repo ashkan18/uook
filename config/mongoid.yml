@@ -3,7 +3,7 @@ development:
   sessions:
     # Defines the default session. (required)
     default:
-      uri: 'mongodb://kbtest:kbtest@ds031193.mongolab.com:31193/heroku_9tgftz02'
+      uri: 'mongodb://mybrary:uook@ds035633.mongolab.com:35633/heroku_crpl6gtw'
       
       options:
         # Change the default write concern. (default = { w: 1 })

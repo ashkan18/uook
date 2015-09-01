@@ -1,6 +1,10 @@
 module V1
 	class Books < Grape::API
 		include V1::Defaults
+		
+		before do
+			authenticate!
+		end
 		resources :books do
 			desc 'Search Books'
 			params do
